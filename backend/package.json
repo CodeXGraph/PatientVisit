@@ -1,0 +1,33 @@
+{
+  "name": "patientvisit",
+  "version": "0.1.0",
+  "description": "An application to create patient summaries from voice notes",
+  "main": "api/main.py",
+  "scripts": {
+    "start:api": "python3 -m api.main",
+    "start:server": "uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload",
+    "start:frontend": "cd frontend && npm start",
+    "start": "concurrently \"npm run start:api\" \"npm run start:frontend\"",
+    "build:frontend": "cd frontend && npm run build",
+    "test": "python -m unittest discover tests",
+    "install:frontend": "cd frontend && npm install",
+    "install:all": "pip install -e . && npm run install:frontend",
+    "postinstall": "npm run install:frontend"
+  },
+  "author": "Your Name",
+  "email": "your.email@example.com",
+  "keywords": [
+    "healthcare",
+    "patient",
+    "summary",
+    "voice recognition"
+  ],
+  "devDependencies": {
+    "concurrently": "^8.0.0"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=7.0.0"
+  },
+  "private": true
+}

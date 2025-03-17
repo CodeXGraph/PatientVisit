@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  patientvisit-frontend:
+    build:
+      context: ../../frontend
+      dockerfile: ../.devcontainer/frontend/Dockerfile
+    container_name: web
+    environment:
+      - REACT_APP_API_URL=http://localhost:8000
+      - NODE_ENV=development
+      - REACT_APP_FEATURE_FLAG=true # Adding a feature flag for development
+    ports:
+      - "3000:3000"

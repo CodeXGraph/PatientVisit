@@ -1,0 +1,13 @@
+numpy==1.24.4
+librosa==0.9.0
+sounddevice==0.4.4
+soundfile==0.10.3.post1
+noisereduce==2.0.0
+openai-whisper==20240930
+torch==1.13.1
+transformers==4.16.0
+pydantic>=1.8.0,<2.0.0
+spacy==3.5.0
+scipy==1.8.0
+cryptography==37.0.0
+python-dotenv==0.20.0

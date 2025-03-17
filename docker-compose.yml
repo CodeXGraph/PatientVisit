@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  patientvisit-frontend:
+    build:
+      context: ./frontend
+      dockerfile: ../.devcontainer/frontend/Dockerfile
+    container_name: web
+    environment:
+      - REACT_APP_API_URL=http://localhost:8000
+      - NODE_ENV=production
+    ports:
+      - "3000:3000"
+
+  patientvisit-backend:
+    build:
+      context: ./backend
+      dockerfile: ../.devcontainer/backend/Dockerfile
+    container_name: api
+    volumes:
+      - ../data:/workspace/data
+      - ../keys:/workspace/keys
+    environment:
+      - PYTHONUNBUFFERED=1
+      - PYTHONDONTWRITEBYTECODE=1
+      - API_HOST=0.0.0.0
+      - API_PORT=8000
+    ports:
+      - "8000:8000"
+    security_opt:
+      - no-new-privileges:true
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 4G
