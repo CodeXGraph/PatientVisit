@@ -13,6 +13,19 @@ A cross-platform application that creates patient visit summaries from voice rec
 - **Multi-Tier Architecture**: React frontend, FastAPI backend, and model processing layer
 - **Docker Containerization**: Runs in isolated containers for development and deployment
 
+## Quick Start
+
+```bash
+# Clone the repository
+git clone https://github.com/chandru-b/patientvisit.git
+cd patientvisit
+
+# Run with Docker (recommended for first-time users)
+docker-compose up --build
+
+# Access the application at http://localhost:3000
+```
+
 ## Requirements
 
 - Python 3.8 or higher
@@ -34,7 +47,7 @@ The application follows a modern multi-tier architecture:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/patientvisit.git
+   git clone https://github.com/chandru-b/patientvisit.git
    cd patientvisit
    ```
 
@@ -49,7 +62,7 @@ The application follows a modern multi-tier architecture:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/patientvisit.git
+   git clone https://github.com/chandru-b/patientvisit.git
    cd patientvisit
    ```
 
@@ -85,6 +98,30 @@ The application follows a modern multi-tier architecture:
    - Frontend: http://localhost:3000
    - API: http://localhost:8000/api
 
+## Configuration
+
+### Environment Variables
+
+Create a `.env` file in the project root with the following variables:
+
+```
+# API Configuration
+API_SECRET_KEY=your_secret_key_here
+DEBUG=True
+ALLOWED_HOSTS=localhost,127.0.0.1
+
+# Database Configuration
+DATABASE_URL=sqlite:///./app.db
+
+# Security Configuration
+ENCRYPTION_KEY=your_encryption_key_here
+```
+
+### Configuration Files
+
+- `config/default.json`: Default configuration values
+- `config/production.json`: Production-specific overrides
+
 ## Usage
 
 ### Running in Development Mode
@@ -108,10 +145,10 @@ For production deployment:
 npm run build:frontend
 
 # Start the production server
-uvicorn api.main:app --host 0.0.0.0 --port 8000
+uvicorn api.main:app --host 0.0.0.0 --port 8000 --workers 4
 
 # Or with Gunicorn for production
-gunicorn -k uvicorn.workers.UvicornWorker api.main:app --bind 0.0.0.0:8000
+gunicorn -k uvicorn.workers.UvicornWorker api.main:app --bind 0.0.0.0:8000 --workers 4
 ```
 
 ### Using Docker for Development
@@ -152,10 +189,18 @@ For proper audio recording on iOS:
 
 ```
 patientvisit/
-├── api/                 # Backend FastAPI API
-│   ├── __init__.py
-│   ├── app.py           # API implementation
-│   └── main.py          # Main API entry point
+├── backend/   
+|   ├── api/                 # Backend FastAPI API
+│        ├── __init__.py
+│        ├── app.py           # API implementation
+│        └── main.py          # Main API entry point
+|   ├── utils/               # Shared utility modules
+│        ├── audio_processing.py  # Audio processing utilities
+│        ├── hipaa_compliance.py  # Security and compliance
+│        └── summarization.py     # Text summarization
+|   ├── docker/              # Docker configuration
+|   ├── tests/               # Test suites
+|   └── package.json         # Project scripts
 ├── frontend/            # React frontend
 │   ├── public/          # Static assets
 │   ├── src/             # React components and logic
@@ -165,16 +210,7 @@ patientvisit/
 │   │   └── utils/       # Utility functions
 │   ├── package.json     # Frontend dependencies
 │   └── Dockerfile.dev   # Development Docker config
-├── utils/               # Shared utility modules
-│   ├── audio_processing.py  # Audio processing utilities
-│   ├── hipaa_compliance.py  # Security and compliance
-│   └── summarization.py     # Text summarization
-├── tests/               # Test suites
-├── data/                # Data storage (git-ignored)
-├── docker/              # Docker configuration
-├── Dockerfile           # Production Docker config
-├── docker-compose.yml   # Container orchestration
-└── package.json         # Project scripts
+└── docker-compose.yml   # Container orchestration
 ```
 
 ### Running Tests
@@ -185,6 +221,9 @@ python -m unittest discover tests
 
 # Run frontend tests
 cd frontend && npm test
+
+# Run end-to-end tests
+npm run test:e2e
 ```
 
 ## Running with Visual Studio Code
@@ -208,6 +247,31 @@ cd frontend && npm test
    - Set breakpoints in the code
    - Use the provided launch configurations in .vscode/launch.json
    - Press F5 to start debugging
+
+## Troubleshooting
+
+### Common Issues
+
+1. **API Connection Errors**
+   - Ensure the API service is running on port 8000
+   - Check for CORS configuration issues in the API
+   - Verify network connectivity between frontend and API
+
+2. **Audio Recording Issues**
+   - Grant microphone permissions in your browser
+   - Use Chrome or Firefox for best audio recording support
+   - On iOS, ensure you're using HTTPS (required for microphone access)
+
+3. **Docker Deployment Issues**
+   - Make sure Docker and Docker Compose are installed and running
+   - Check if ports 3000 and 8000 are already in use
+   - Review Docker logs: `docker-compose logs`
+
+### Getting Help
+
+Join our community support channels:
+- GitHub Issues: https://github.com/chandru-b/patientvisit/issues
+- Documentation: https://patientvisit.docs.example.com
 
 ## Contributing
 
