@@ -1,0 +1,3 @@
+[console_scripts]
+patientvisit-api = api.server:run_server
+

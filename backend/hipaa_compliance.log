@@ -1,0 +1,34 @@
+2025-03-29 18:25:59,762 - utils.summarization - INFO - Loaded standard NLP model (fallback)
+2025-03-29 18:27:29,522 - utils.summarization - INFO - Loaded standard NLP model (fallback)
+2025-03-29 18:36:35,547 - utils.summarization - INFO - Loaded standard NLP model (fallback)
+2025-03-29 19:11:58,590 - utils.summarization - INFO - Loaded standard NLP model (fallback)
+2025-03-29 19:12:55,988 - utils.summarization - INFO - Loaded standard NLP model (fallback)
+2025-03-29 19:13:55,841 - utils.summarization - INFO - Loaded standard NLP model (fallback)
+2025-03-29 19:16:25,112 - utils.summarization - INFO - Loaded standard NLP model (fallback)
+2025-03-29 19:33:56,761 - utils.summarization - INFO - Loaded standard NLP model (fallback)
+2025-03-29 19:37:56,316 - utils.summarization - INFO - Loaded standard NLP model (fallback)
+2025-03-29 19:39:08,065 - utils.summarization - INFO - Loaded standard NLP model (fallback)
+2025-03-29 19:44:30,177 - utils.summarization - INFO - Loaded standard NLP model (fallback)
+2025-03-29 19:44:42,205 - utils.summarization - INFO - Loaded medical summarization model
+2025-03-29 19:45:05,157 - fastapi - ERROR - Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+2025-03-29 19:46:02,790 - utils.summarization - INFO - Loaded standard NLP model (fallback)
+2025-03-29 19:46:19,984 - utils.summarization - INFO - Loaded medical summarization model
+2025-03-29 19:50:07,409 - fastapi - ERROR - Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+2025-03-30 21:44:12,587 - utils.summarization - INFO - Loaded standard NLP model (fallback)
+2025-03-30 21:44:48,598 - utils.summarization - INFO - Loaded medical summarization model
+2025-03-30 22:12:52,356 - utils.summarization - INFO - Loaded standard NLP model (fallback)
+2025-03-30 22:15:13,499 - utils.summarization - INFO - Loaded standard NLP model (fallback)
+2025-03-30 22:16:41,182 - utils.summarization - INFO - Loaded standard NLP model (fallback)
+2025-03-30 22:17:50,071 - utils.summarization - INFO - Loaded standard NLP model (fallback)
+2025-03-30 22:18:05,189 - utils.summarization - INFO - Loaded medical summarization model
+2025-04-01 05:33:23,617 - utils.summarization - INFO - Loaded standard NLP model (fallback)
+2025-04-01 05:42:57,264 - utils.summarization - INFO - Loaded standard NLP model (fallback)
+2025-04-01 05:43:09,406 - utils.summarization - INFO - Loaded medical summarization model

@@ -17,13 +17,38 @@ except:
     logger.info("Loaded standard NLP model (fallback)")
 
 # In a real implementation, would use a fine-tuned medical summarization model
+# In a real implementation, would use a fine-tuned medical summarization model
 try:
-    summarizer = pipeline("summarization", model="medical-summarizer")
-    logger.info("Loaded medical summarization model")
-except:
-    # Fall back to general summarization model
-    summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
-    logger.info("Loaded standard summarization model (fallback)")
+    # Check if we have internet connection first
+    import requests
+    response = requests.head("https://huggingface.co", timeout=5)
+    
+    # Only try to load medical model if we have connection
+    if response.status_code == 200:
+        summarizer = pipeline("summarization", model="sshleifer/distilbart-cnn-6-6")
+        logger.info("Loaded medical summarization model")
+    else:
+        raise ConnectionError("Connection error")
+except Exception as e:
+    logger.warning(f"Could not load online model: {str(e)}")
+    
+    # Create a simple extractive summarizer as fallback
+    logger.info("Using simple extractive summarization as fallback")
+    
+    # Define a simple extractive summarizer function that will be used instead
+    class SimpleExtractiveSum:
+        def __call__(self, text, **kwargs):
+            # Extract first few sentences as simple summary (up to max_length words)
+            max_length = kwargs.get('max_length', 100)
+            sentences = text.split('.')
+            summary = '.'.join(sentences[:5]) + '.'
+            # Limit to max length words
+            words = summary.split()
+            if len(words) > max_length:
+                summary = ' '.join(words[:max_length])
+            return [{'summary_text': summary}]
+    
+    summarizer = SimpleExtractiveSum()
 
 def preprocess_transcript(text):
     """

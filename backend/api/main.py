@@ -3,6 +3,8 @@
 # Import the FastAPI app from app.py
 from api.app import app
 
+
+
 # This file serves as the entry point for the FastAPI application
 # The app instance is imported from app.py and used by uvicorn
 # No additional configuration is needed here, as everything is set up in app.py

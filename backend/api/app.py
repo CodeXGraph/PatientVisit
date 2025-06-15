@@ -14,6 +14,22 @@ import numpy as np
 import soundfile as sf
 from typing import Optional
 import shutil
+import debugpy
+# Enable debugging - with safety check
+try:
+    debugpy.listen(("0.0.0.0", 5678))
+    print("⏳ Waiting for debugger to attach...")
+    debugpy.wait_for_client()
+    print("🔍 Debugger attached!")
+except RuntimeError as e:
+    # If debugpy is already listening, just print a message
+    if "already been called" in str(e):
+        print("Debugger is already configured - continuing execution")
+    else:
+        # Re-raise if it's a different RuntimeError
+        raise
+
+
 
 # Add project root to path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))

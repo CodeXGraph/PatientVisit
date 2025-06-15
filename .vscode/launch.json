@@ -7,23 +7,59 @@
             "request": "launch",
             "cwd": "${workspaceFolder}/frontend",
             "runtimeExecutable": "npm",
-            "runtimeArgs": ["start"],
+            "runtimeArgs": [
+                "start"
+            ],
             "console": "integratedTerminal"
         },
         {
-            "name": "Backend: FastAPI",
+            "name": "Backend: FastAPI (Local)",
             "type": "debugpy",
             "request": "launch",
             "module": "uvicorn",
-            "args": ["api.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"],
+            "args": [
+                "api.main:app",
+                "--host",
+                "0.0.0.0",
+                "--port",
+                "8000",
+                "--reload"
+            ],
             "jinja": true,
-            "justMyCode": true
+            "justMyCode": false
+        },
+        {
+            "name": "Backend: FastAPI (Container)",
+            "type": "debugpy",
+            "request": "attach",
+            "connect": {
+                "host": "localhost",
+                "port": 5678
+            },
+            "pathMappings": [
+                {
+                    "localRoot": "${workspaceFolder}/backend",
+                    "remoteRoot": "/workspace"
+                }
+            ],
+            "justMyCode": false,
+            "django": false
         }
     ],
     "compounds": [
         {
-            "name": "Full Stack: Frontend + Backend",
-            "configurations": ["Backend: FastAPI", "Frontend: Start Dev Server"]
+            "name": "Full Stack: Frontend + Backend (Local)",
+            "configurations": [
+                "Backend: FastAPI (Local)",
+                "Frontend: Start Dev Server"
+            ]
+        },
+        {
+            "name": "Full Stack: Frontend + Backend (Container)",
+            "configurations": [
+                "Backend: FastAPI (Container)",
+                "Frontend: Start Dev Server"
+            ]
         }
     ]
 }

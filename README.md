@@ -248,6 +248,22 @@ npm run test:e2e
    - Use the provided launch configurations in .vscode/launch.json
    - Press F5 to start debugging
 
+### Debugging with Dev Container
+
+To debug the FastAPI application within a development container:
+
+1. Open the project in VS Code with the Dev Containers extension installed
+2. Click on the green button in the bottom-left corner and select "Reopen in Container"
+3. Once the container is ready, open a terminal in VS Code and run:
+   ```bash
+   /workspace/.venv-debug/bin/python /workspace/debug_fastapi.py
+   ```
+4. The script will wait for the debugger to attach
+5. Go to the Run and Debug panel in VS Code (Ctrl+Shift+D)
+6. Select "Backend: FastAPI (Container)" from the dropdown
+7. Press F5 to attach the debugger
+8. Set breakpoints in your code and they will be hit when the code executes
+
 ## Troubleshooting
 
 ### Common Issues

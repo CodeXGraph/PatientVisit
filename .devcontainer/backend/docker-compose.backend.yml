@@ -7,6 +7,7 @@ services:
       dockerfile: ../.devcontainer/backend/Dockerfile
     container_name: api
     volumes:
+      - ../../backend:/workspace:cached
       - ../data:/workspace/data
       - ../keys:/workspace/keys
     environment:
@@ -14,8 +15,10 @@ services:
       - PYTHONDONTWRITEBYTECODE=1
       - API_HOST=0.0.0.0
       - API_PORT=8000
+      - PYTHONPATH=/workspace
     ports:
       - "8000:8000"
+      - "5678:5678" # Debugpy port
     security_opt:
       - no-new-privileges:true
     deploy:
@@ -23,3 +26,5 @@ services:
         limits:
           cpus: '1'
           memory: 4G
+    # Command to run the application with debugpy
+    command: python -m debugpy --listen 0.0.0.0:5678 --wait-for-client -m uvicorn api.main:app --host 0.0.0.0 --port 8000

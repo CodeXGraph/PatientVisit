@@ -12,19 +12,28 @@
         "python.linting.enabled": true,
         "python.linting.pylintEnabled": true,
         "python.formatting.provider": "black",
-        "editor.formatOnSave": true
+        "editor.formatOnSave": true,
+        "python.defaultInterpreterPath": "/workspace/.venv-debug/bin/python",
+        "python.analysis.extraPaths": [
+          "/workspace"
+        ],
+        "python.terminal.activateEnvironment": true,
+        "python.debugpy.debugJustMyCode": false
       },
       "extensions": [
         "ms-python.python",
         "ms-python.vscode-pylance",
+        "ms-python.debugpy",
         "ms-vsliveshare.vsliveshare",
         "ms-toolsai.jupyter"
       ]
     }
   },
   "forwardPorts": [
-    8000
+    8000,
+    5678
   ],
-  "postCreateCommand": "pip install -e .",
-  "remoteUser": "root"
+  // "postCreateCommand": "pip install -e . && chmod +x /workspace/.devcontainer/setup-debug.sh && /workspace/.devcontainer/setup-debug.sh",
+  "remoteUser": "root",
+  // "postStartCommand": "echo 'Virtual environment for debugging is ready at /workspace/.venv-debug'"
 }

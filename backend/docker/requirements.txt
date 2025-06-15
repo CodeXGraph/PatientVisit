@@ -11,3 +11,5 @@ spacy==3.5.0
 scipy==1.8.0
 cryptography==37.0.0
 python-dotenv==0.20.0
+python-multipart==0.0.5
+fastapi==0.68.0
